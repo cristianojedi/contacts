@@ -1,0 +1,41 @@
+<div class="center-table">
+  <h1>Lista de Contatos</h1>
+  <!-- <button mat-raised-button color="primary">Novo Contato
+  <a routerLink="/contact-insert"></a>
+</button> -->
+
+  <a mat-raised-button color="primary" routerLink="/contact-insert">Novo</a>
+  <br />
+  <br />
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let contact">{{contact.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let contact">{{contact.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="twitter">
+      <mat-header-cell *matHeaderCellDef>Twitter</mat-header-cell>
+      <mat-cell *matCellDef="let contact">{{contact.twitter }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Telefone</mat-header-cell>
+      <mat-cell *matCellDef="let contact">{{contact.phone }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="detail">
+      <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        <button mat-flat-button color="primary" (click)="onUpdateContact(contact._id)">Detalhar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

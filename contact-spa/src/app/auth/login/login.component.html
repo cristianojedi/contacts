@@ -1,0 +1,28 @@
+<div class="center">
+  <section>
+    <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px" [formGroup]="loginForm" (ngSubmit)="onAuthenticate()">
+      <div *ngIf="errors.length > 0">
+        <ul>
+          <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+      </div>
+      <mat-form-field>
+        <input type="email" matInput placeholder="Seu e-mail" formControlName="email" required>
+        <mat-hint>Digite um e-mail válido</mat-hint>
+        <mat-error>E-mail inválido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Sua senha" formControlName="password" required minlength="6">
+        <mat-hint>Digite sua senha</mat-hint>
+        <mat-error>Tem que ter pelo menos 6 caracteres</mat-error>
+      </mat-form-field>
+
+      <div class="flexbox-parent">
+        <div layout="row" layout-align="center" fxLayoutGap="10px">
+          <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Entrar</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

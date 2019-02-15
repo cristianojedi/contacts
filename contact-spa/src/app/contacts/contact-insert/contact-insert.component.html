@@ -1,0 +1,36 @@
+<div class="center">
+    <section>
+      <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px" [formGroup]="insertContactForm"
+        (ngSubmit)="onInsert()">
+        <mat-form-field hintLabel="Deve conter pelo menos 2 caracteres">
+          <input matInput #inputName placeholder="Seu nome" formControlName="name" required minlength="2" maxlength="100">
+          <mat-hint align="end">{{inputName.value?.length || 0}} / 100</mat-hint>
+          <mat-error>Tem que ter pelo menos 2 caracteres</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput #inputEmail type="email" placeholder="Seu e-mail" formControlName="email" required maxlength="150">
+          <mat-hint align="end">{{inputEmail.value?.length || 0}} / 150</mat-hint>
+          <mat-error>E-mail inválido</mat-error>
+          <mat-hint>Digite um e-mail válido</mat-hint>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput #inputTwitter placeholder="Seu twitter" formControlName="twitter" maxlength="30">
+          <mat-hint align="end">{{inputTwitter.value?.length || 0}} / 30</mat-hint>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput #inputPhone type="text" placeholder="Seu telefone" formControlName="phone" maxlength="11" (keypress)="numberOnly($event)">
+          <mat-hint align="end">{{inputPhone.value?.length || 0}} / 11</mat-hint>
+        </mat-form-field>
+  
+        <div class="flexbox-parent">
+          <div layout="row" layout-align="center center" fxLayoutGap="10px">
+            <button type="submit" mat-raised-button color="primary" [disabled]="insertContactForm.invalid">Salvar</button>
+            <a mat-raised-button routerLink="/contacts">Cancelar</a>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
