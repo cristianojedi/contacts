@@ -1,34 +1,21 @@
-'use strict'; // força o javascript ser muito mais criterioso;
+'use strict';
 
+// Configuração do servidor web
 const app = require('../src/app');
 const http = require('http');
 const debug = require('debug')('contactapi:server');
 
-const port = normalizePort(process.env.PORT || '3000');
+// Configuração da porta
+const port = 3000;
 app.set('port', port);
 
+// Configura e cria o servidor
 const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/*
-Função para retornar outra porta caso a porta 3000 já esteja em uso com algum serviço executando no servidor
-*/
-function normalizePort(val) {
-    let port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        return val;
-    }
-
-    if (port >= 0) {
-        return port;
-    }
-
-    return false;
-}
-
+// Recebe os erros do servidor
 function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
@@ -52,6 +39,7 @@ function onError(error) {
     }
 }
 
+// Recupera as informações do servidor e starta o debug
 function onListening() {
     const addr = server.address();
     const bind = typeof addr === 'string'
@@ -59,3 +47,5 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+
+module.exports = server;

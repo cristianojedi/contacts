@@ -60,10 +60,6 @@ export class SignupComponent implements OnInit {
   }
 
   onAuthenticateComplete(res: any): void {
-
-    // seta as variáveis do login
-    // this.userService.authSuccessfully();
-
     // Zera os dados do formulário
     this.insertUserForm.reset();
 

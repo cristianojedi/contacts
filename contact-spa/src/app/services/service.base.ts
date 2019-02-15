@@ -11,18 +11,7 @@ import 'rxjs/add/observable/throw';
 
 export abstract class ServiceBase{
 
-    // protected UrlService: string = "http://localhost:3000/";
-
-    // protected getHeadersJson() {
-    //     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //     let options = { headers: headers };
-    //     return options;
-    // }
-
-    // protected extractData(response: any) {
-    //     let body = response.json();
-    //     return body.data || {};
-    // }
+    protected UrlService: string = "http://localhost:3000/";
 
     protected serviceError(error: Response | any) {
         let errMsg: string;

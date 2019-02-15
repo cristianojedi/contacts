@@ -4,6 +4,7 @@ const Validation = require('../validators/fluent-validator')
 const repository = require('../repositories/contact-repository');
 const md5 = require('md5');
 
+// Busca todos os contatos
 exports.get = async (req, res, next) => {
     try {
         let data = await repository.get();
@@ -22,6 +23,7 @@ exports.get = async (req, res, next) => {
     }
 }
 
+// Busca um contato pelo id
 exports.getById = async (req, res, next) => {
     try {
         let data = await repository.getById(req.params.id);
@@ -40,7 +42,10 @@ exports.getById = async (req, res, next) => {
     }
 }
 
+// Cria um contato
 exports.post = async (req, res, next) => {
+
+    // Validações
     let validation = new Validation();
 
     // name
@@ -82,7 +87,10 @@ exports.post = async (req, res, next) => {
     }
 }
 
+// Altera um contato
 exports.patch = async (req, res, next) => {
+
+    // Validações
     let validation = new Validation();
 
     // name
@@ -123,6 +131,7 @@ exports.patch = async (req, res, next) => {
     }
 }
 
+// Deleta um contato
 exports.delete = async (req, res, next) => {
     try {
         let data = await repository.delete(req.params.id);

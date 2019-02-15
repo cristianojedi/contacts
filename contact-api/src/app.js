@@ -15,6 +15,7 @@ const User = require('./models/user');
 // Conecta ao banco de dados
 mongoose.connect(config.connectionString);
 
+// Módulo body parser para converter os dados das requisições em json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -31,6 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Configuração das rotas
 app.use('/', indexRoute);
 app.use('/contacts', contactRoute);
 app.use('/users', userRoute);

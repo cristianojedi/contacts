@@ -13,7 +13,6 @@ import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from "./app.routing.module";
 import { HeaderComponent } from './navigation/header/header.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 import { UserService } from "./services/user.service";
 import { ContactService } from "./services/contact.service";
@@ -21,7 +20,6 @@ import { ContactService } from "./services/contact.service";
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactInsertComponent } from './contacts/contact-insert/contact-insert.component';
 import { ContactUpdateComponent } from './contacts/contact-update/contact-update.component';
-import { ContactDeleteComponent } from './contacts/contact-delete/contact-delete.component';
 import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
@@ -31,11 +29,9 @@ import { MatConfirmDialogComponent } from './shared/mat-confirm-dialog/mat-confi
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavListComponent,
     ContactListComponent,
     ContactInsertComponent,
     ContactUpdateComponent,
-    ContactDeleteComponent,
     MatConfirmDialogComponent
   ],
   imports: [

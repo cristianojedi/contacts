@@ -4,16 +4,17 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 
 import { Contact } from "../contacts/models/contact";
+import { ServiceBase } from "../services/service.base";
 
 @Injectable()
-export class ContactService {
-    private url: string = "http://localhost:3000/contacts";
-
+export class ContactService extends ServiceBase {
     public token: string;
 
     constructor(
         private http: HttpClient
-    ) { }
+    ) {
+        super();
+    }
 
     private getHeadersJson() {
         this.token = localStorage.getItem('user.token');
@@ -23,26 +24,26 @@ export class ContactService {
     }
 
     list() {
-        let res = this.http.get<Contact[]>(this.url, this.getHeadersJson());
+        let res = this.http.get<Contact[]>(this.UrlService + "contacts", this.getHeadersJson());
         return res;
     }
 
     get(id: string): Observable<Contact> {
-        let res = this.http.get<Contact>(this.url + '/' + id, this.getHeadersJson());
+        let res = this.http.get<Contact>(this.UrlService + 'contacts/' + id, this.getHeadersJson());
         return res;
     }
 
     insert(contact: Contact): Observable<Contact> {
-        let res = this.http.post<Contact>(this.url, contact, this.getHeadersJson());
+        let res = this.http.post<Contact>(this.UrlService + "contacts", contact, this.getHeadersJson());
         return res;
     }
 
     update(contact: Contact): Observable<Contact> {
-        let res = this.http.patch<Contact>(this.url + '/' + contact._id, contact, this.getHeadersJson());
+        let res = this.http.patch<Contact>(this.UrlService + 'contacts/' + contact._id, contact, this.getHeadersJson());
         return res;
     }
 
     delete(id: string) {
-        return this.http.delete(this.url + '/' + id, this.getHeadersJson());
+        return this.http.delete(this.UrlService + 'contacts/' + id, this.getHeadersJson());
     }
 }

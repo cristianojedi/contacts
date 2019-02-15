@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const Contact = mongoose.model('Contact');
 
+// Busca todos os contatos
 exports.get = async () => {
     let res = await Contact.find(
         {},
@@ -10,11 +11,13 @@ exports.get = async () => {
     return res;
 }
 
+// Busca um contato pelo id
 exports.getById = async (id) => {
     let res = await Contact.findById(id, 'name email twitter phone');
     return res;
 }
 
+// Cria um contato
 exports.create = async (data) => {
     let contact = new Contact();
     contact.name = data.name;
@@ -24,6 +27,7 @@ exports.create = async (data) => {
     await contact.save();
 }
 
+// Altera um contato
 exports.update = async (id, data) => {
     let res = await Contact
         .findByIdAndUpdate(id, {
@@ -37,6 +41,7 @@ exports.update = async (id, data) => {
     return res;
 }
 
+// Exclui um contato
 exports.delete = async (id) => {
     let res = await Contact.findByIdAndRemove(id);
     return res;

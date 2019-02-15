@@ -29,12 +29,6 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', { validators: [Validators.required, Validators.email] }),
       password: new FormControl('', { validators: [Validators.required] })
     });
-
-    // let token = localStorage.getItem('user.token');
-    // if (token) {
-    //   console.log(localStorage.getItem('user.token'));
-    //   this.router.navigateByUrl('/home');
-    // }
   }
 
   onAuthenticate() {
@@ -52,10 +46,6 @@ export class LoginComponent implements OnInit {
   }
 
   onAuthenticateComplete(res: any): void {
-
-    // seta as variáveis do login
-    // this.userService.authSuccessfully();
-
     // Zera os dados do formulário
     this.loginForm.reset();
 

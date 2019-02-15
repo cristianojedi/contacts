@@ -1,12 +1,7 @@
 <mat-toolbar color="primary">
-  <div fxHide.gt-xs>
-    <!-- <button mat-icon-button (click)="onToggleSidenav()">
-      <mat-icon>menu</mat-icon>
-    </button> -->
-  </div>
   <div>
-    <a *ngIf="isAuth" routerLink="/">LOGO</a>
-    <a *ngIf="!isAuth" href="javascript:void(0)">LOGO</a>
+    <a *ngIf="userAuth" routerLink="/">LOGO</a>
+    <a *ngIf="!userAuth" href="javascript:void(0)">LOGO</a>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul [ngSwitch]="userAuth()" fxLayout fxLayoutGap="10px" class="navigation-items">

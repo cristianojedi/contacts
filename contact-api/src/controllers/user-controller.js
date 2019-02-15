@@ -5,25 +5,10 @@ const repository = require('../repositories/user-repository');
 const md5 = require('md5');
 const authService = require('../services/auth-service');
 
-exports.getById = async (req, res, next) => {
-    try {
-        let data = await repository.getById(req.params.id);
-
-        if (data == null) {
-            res.status(404).send({
-                message: 'Usuário não encontrado'
-            })
-        } else {
-            res.status(200).send(data);
-        }
-    } catch (error) {
-        res.status(500).send({
-            message: 'Falha ao processar a requisição getById()'
-        });
-    }
-}
-
+// Cria um usuário
 exports.post = async (req, res, next) => {
+
+    // Validações
     let validation = new Validation();
 
     // name
@@ -45,7 +30,7 @@ exports.post = async (req, res, next) => {
     if (!validation.isValid()) {
         res.status(400).send(validation.errors()).end();
         return;
-    }
+    };
 
     try {
         await repository.create({
@@ -64,9 +49,10 @@ exports.post = async (req, res, next) => {
         res.status(500).send({
             message: 'Falha ao processar a requisição post()'
         });
-    }
-}
+    };
+};
 
+// Autentica um usuário
 exports.authenticate = async (req, res, next) => {
     try {
         let user = await repository.authenticate({
@@ -88,9 +74,6 @@ exports.authenticate = async (req, res, next) => {
         });
 
         res.status(201).send({
-            // email: user.email,
-            // name: user.name
-
             token: token,
             data: {
                 email: user.email,
@@ -101,5 +84,24 @@ exports.authenticate = async (req, res, next) => {
         res.status(500).send({
             message: 'Falha ao processar a requisição authenticate()'
         });
-    }
+    };
+};
+
+// Busca um usuário pelo id
+exports.getById = async (req, res, next) => {
+    try {
+        let data = await repository.getById(req.params.id);
+
+        if (data == null) {
+            res.status(404).send({
+                message: 'Usuário não encontrado'
+            })
+        } else {
+            res.status(200).send(data);
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao processar a requisição getById()'
+        });
+    };
 };
