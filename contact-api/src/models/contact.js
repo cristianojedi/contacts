@@ -23,4 +23,14 @@ const schema = new Schema({
     }
 });
 
+schema.methods.getData = function () {
+    return {
+        _id: this._id,
+        name: this.name,
+        email: this.email,
+        twitter: this.twitter,
+        phone: this.phone
+    };
+};
+
 module.exports = mongoose.model('Contact', schema);

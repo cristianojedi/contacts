@@ -71,13 +71,16 @@ exports.post = async (req, res, next) => {
     }
 
     try {
-        await repository.create({
+        let c = await repository.create({
             name: req.body.name,
             email: req.body.email,
             twitter: req.body.twitter,
             phone: req.body.phone
         });
         res.status(201).send({
+            data: {
+                id: c._id
+            },
             message: 'Contato cadastrado com sucesso'
         });
     } catch (error) {

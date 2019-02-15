@@ -25,6 +25,7 @@ exports.create = async (data) => {
     contact.twitter = data.twitter;
     contact.phone = data.phone;
     await contact.save();
+    return contact.getData();
 }
 
 // Altera um contato
